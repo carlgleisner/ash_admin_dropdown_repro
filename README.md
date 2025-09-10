@@ -15,7 +15,7 @@ This app has a domain `Tickets` where a resource `Representative` belongs to `Or
 
 When creating a `Representative` with the default `:create` action, AshAdmin renders a fully working dropdown to select the representative's organization.
 
-insert screenshot here
+<img width="889" height="540" alt="screenshot1" src="https://github.com/user-attachments/assets/ea8e055b-dc60-44ad-8f4e-c99be0a8c211" />
 
 However, when creating `Representative` with the `:alt_create` action with an implementation that, to the best of my understanding, should be functionally equivalent to the default create action:
 
@@ -31,6 +31,6 @@ end
 
 no such dropdown is rendered by AshAdmin:
 
-insert screenshot here
+<img width="898" height="588" alt="screenshot2" src="https://github.com/user-attachments/assets/aae68487-d157-492e-bc05-84113fc33703" />
 
 Looking at the `Organization` resource lifted from the `dev` application, its `:create` and `:update` actions are not default actions and the only difference to the implementation of the `:alt_create` and `:alt_update` actions for the `Representative` resource above - in which drop downs are not rendered - is that the `Organization` resource's actions take arguments that are `{:array, :map}` rather than `:map`.
