@@ -89,6 +89,13 @@ defmodule MyApp.MixProject do
       setup: ["deps.get", "ash.setup", "assets.setup", "assets.build", "run priv/repo/seeds.exs"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
+      reset: [
+        "ash_postgres.drop",
+        "ash.setup",
+        "assets.setup",
+        "assets.build",
+        "run priv/repo/seeds.exs"
+      ],
       test: ["ash.setup --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
       "assets.build": ["compile", "tailwind my_app", "esbuild my_app"],

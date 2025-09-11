@@ -34,8 +34,16 @@ defmodule MyApp.Tickets.Representative do
       accept [:first_name, :last_name]
 
       argument :organization, :map
+      argument :tag_names, {:array, :string}
 
       change manage_relationship(:organization, type: :append)
+
+      change manage_relationship(:tag_names, :tags,
+               type: :append_and_remove,
+               value_is_key: :name,
+               on_lookup: :relate,
+               on_no_match: :create
+             )
     end
 
     update :alt_update do
@@ -45,8 +53,16 @@ defmodule MyApp.Tickets.Representative do
       accept [:first_name, :last_name]
 
       argument :organization, :map
+      argument :tag_names, {:array, :string}
 
       change manage_relationship(:organization, type: :append_and_remove)
+
+      change manage_relationship(:tag_names, :tags,
+               type: :append_and_remove,
+               value_is_key: :name,
+               on_lookup: :relate,
+               on_no_match: :create
+             )
     end
   end
 
@@ -65,14 +81,28 @@ defmodule MyApp.Tickets.Representative do
   attributes do
     uuid_primary_key :id
 
-    attribute :first_name, :string, public?: true
-    attribute :last_name, :string, public?: true
+    attribute :first_name, :string do
+      public? true
+      allow_nil? false
+    end
+
+    attribute :last_name, :string do
+      public? true
+      allow_nil? false
+    end
+
     # attribute :representative, :boolean, public?: true
   end
 
   relationships do
     relationships do
       belongs_to :organization, MyApp.Tickets.Organization, public?: true
+
+      many_to_many :tags, MyApp.Tickets.Tag do
+        through MyApp.Tickets.RepresentativeTag
+        source_attribute_on_join_resource :representative_id
+        destination_attribute_on_join_resource :tag_id
+      end
     end
 
     # has_many :assigned_tickets, MyApp.Tickets.Ticket do

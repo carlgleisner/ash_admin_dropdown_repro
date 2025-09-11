@@ -9,6 +9,7 @@ defmodule MyApp.Tickets.Organization do
   admin do
     label_field :name
     relationship_select_max_items 2
+    relationship_display_fields [:name]
   end
 
   postgres do

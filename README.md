@@ -5,6 +5,15 @@
 ```sh
 mix deps.get
 mix setup
+iex -S mix phx.server
+```
+
+Then visit [http://localhost:4000/admin].
+
+There is also:
+
+```sh
+mix reset
 ```
 
 ## Description

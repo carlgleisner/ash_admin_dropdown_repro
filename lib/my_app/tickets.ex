@@ -15,7 +15,14 @@ defmodule MyApp.Tickets do
 
     resource MyApp.Tickets.Representative do
       define :create_representative, action: :create
+      define :alt_create_representative, action: :alt_create
       define :read_representatives, action: :read
     end
+
+    resource MyApp.Tickets.Tag do
+      define :create_tag, action: :create
+    end
+
+    resource MyApp.Tickets.RepresentativeTag
   end
 end
