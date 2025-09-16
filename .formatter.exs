@@ -1,5 +1,6 @@
 [
   import_deps: [
+    :clarity,
     :ash_admin,
     :ash_postgres,
     :ash_phoenix,

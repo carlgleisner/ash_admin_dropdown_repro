@@ -41,6 +41,7 @@ defmodule MyApp.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:clarity, "~> 0.1"},
       {:picosat_elixir, "~> 0.2.3"},
       {:sourceror, "~> 1.8", only: [:dev, :test]},
       {:live_debugger, "~> 0.4", only: [:dev]},

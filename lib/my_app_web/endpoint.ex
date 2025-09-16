@@ -26,6 +26,12 @@ defmodule MyAppWeb.Endpoint do
     gzip: not code_reloading?,
     only: MyAppWeb.static_paths()
 
+  plug Plug.Static,
+    at: "/clarity",
+    from: :clarity,
+    gzip: true,
+    only: Clarity.Web.static_paths()
+
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
